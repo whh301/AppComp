@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.spirent.landslide.datagen.MainActivity">
+
+    <TextView
+        android:text="Celular Information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/txtCelular" />
+
+    <TextView
+        android:text="WiFi Information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:id="@+id/txtWiFiInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Data BenchMark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button" />
+
+    <TextView
+        android:text="Dummy Carrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCarrierInfo"
+        android:layout_alignBaseline="@+id/lblCarrier"
+        android:layout_alignBottom="@+id/lblCarrier"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtWiFiInfo"
+        android:layout_alignLeft="@+id/lblCarrier"
+        android:layout_alignStart="@+id/lblCarrier"
+        android:layout_marginTop="10dp"
+        android:id="@+id/Label_WifiDetail" />
+
+    <TextView
+        android:text="China"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView14"
+        android:layout_alignLeft="@+id/txtCarrierInfo"
+        android:layout_alignStart="@+id/txtCarrierInfo"
+        android:id="@+id/lblLocalInfo" />
+
+    <TextView
+        android:text="CDMA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignLeft="@+id/lblLocalInfo"
+        android:layout_alignStart="@+id/lblLocalInfo"
+        android:id="@+id/txtNetworkInfo" />
+
+    <TextView
+        android:text="Network Info:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/textView14"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
+
+    <TextView
+    android:text="Carrier Info:"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:id="@+id/lblCarrier"
+        android:layout_below="@+id/txtCelular"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button" />
+
+    <TextView
+        android:text="Location:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:layout_below="@+id/lblCarrier"
+        android:layout_alignLeft="@+id/lblCarrier"
+        android:layout_alignStart="@+id/lblCarrier" />
+
+    <TextView
+        android:text="ON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtWiFiInfo"
+        android:layout_alignLeft="@+id/lblGsmSignal"
+        android:layout_alignStart="@+id/lblGsmSignal"
+        android:id="@+id/lblWiFiState" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textDataInfo"
+        android:layout_above="@+id/lblWiFiState"
+        android:layout_toRightOf="@+id/Label_WifiDetail"
+        android:layout_toEndOf="@+id/Label_WifiDetail"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:text="-1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblGsmSignal"
+        android:layout_above="@+id/textDataInfo"
+        android:layout_alignLeft="@+id/lblCdmaSignal"
+        android:layout_alignStart="@+id/lblCdmaSignal" />
+
+    <TextView
+        android:text="CDMA Signal:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/lblGsmSignal"
+        android:layout_toRightOf="@+id/Label_WifiDetail"
+        android:layout_toEndOf="@+id/Label_WifiDetail" />
+
+    <TextView
+        android:text="GSM Signal:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/textView4"
+        android:layout_toRightOf="@+id/Label_WifiDetail"
+        android:layout_toEndOf="@+id/Label_WifiDetail" />
+
+    <TextView
+        android:text="-1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblCdmaSignal"
+        android:layout_above="@+id/lblGsmSignal"
+        android:layout_alignLeft="@+id/txtNetworkInfo"
+        android:layout_alignStart="@+id/txtNetworkInfo" />
+
+    <TextView
+        android:text="Cell Id:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_toRightOf="@+id/Label_WifiDetail"
+        android:layout_toEndOf="@+id/Label_WifiDetail"
+        android:id="@+id/textView10" />
+
+    <TextView
+        android:text="-1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNetworkInfo"
+        android:layout_alignLeft="@+id/lblCdmaSignal"
+        android:layout_alignStart="@+id/lblCdmaSignal"
+        android:id="@+id/lblCellId" />
+
+    <TextView
+        android:text="WiFi List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="107dp"
+        android:id="@+id/txtWiFiList"
+        android:layout_below="@+id/Label_WifiDetail"
+        android:layout_alignLeft="@+id/Label_WifiDetail"
+        android:layout_alignStart="@+id/Label_WifiDetail" />
+
+
+</RelativeLayout>
