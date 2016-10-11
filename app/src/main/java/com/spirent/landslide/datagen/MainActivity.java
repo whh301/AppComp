@@ -109,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
             String dataInfo = "IP Address:" + getLocalIpAddress() + "\n";
             dataInfo = dataInfo + "DNS:" + getLocalDNS() + "\n";
             dataInfo = dataInfo + "Network Type:" + ntwkTypeStr + "\n";
+            mLabelDataInfo.setText(dataInfo);
+        }
+        else
+        {
+            mLabelDataInfo.setText("");
         }
 
         phoneListener = new MyPhoneStateListener();
@@ -159,9 +164,72 @@ public class MainActivity extends AppCompatActivity {
     private class TimerProcess implements Runnable{
         public void run() {
             WifiManager wifiInfo = (WifiManager) getSystemService(WIFI_SERVICE);
+            TextView txtWiFiList = (TextView) findViewById(R.id.txtWiFiList);
             if (wifiInfo.getWifiState() == WIFI_STATE_ENABLED) {
                 showWIFIDetail();
             }
+            else
+            {
+                txtWiFiList.setText("");
+                mLabelWifi.setText("");
+            }
+
+            int netWorkType = telephonyManager.getPhoneType();
+            String cellId = "";
+            try {
+                if (netWorkType == TelephonyManager.PHONE_TYPE_CDMA) {
+                    CdmaCellLocation location = (CdmaCellLocation) telephonyManager.getCellLocation();
+                    cellId = "" + location.getBaseStationId();
+                } else {
+                    GsmCellLocation location = (GsmCellLocation) telephonyManager.getCellLocation();
+                    cellId = "" + location.getCid();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            mLabelCellId.setText(cellId);
+
+            int ntwkType=telephonyManager.getNetworkType();
+            String ntwkTypeStr="ERR";
+            switch (ntwkType) {
+                case 0: ntwkTypeStr = "UNKNOWN";
+                case 1: ntwkTypeStr = "GPRS";
+                case 2: ntwkTypeStr = "EDGE";
+                case 3: ntwkTypeStr = "UMTS";
+                case 4: ntwkTypeStr = "CDMA";
+                case 5: ntwkTypeStr = "EVDO_0";
+                case 6: ntwkTypeStr = "EVDO_A";
+                case 7: ntwkTypeStr = "1xRTT";
+                case 8: ntwkTypeStr = "HSDPA";
+                case 9: ntwkTypeStr = "HSUPA";
+                case 10: ntwkTypeStr = "HSPA";
+                case 11: ntwkTypeStr = "IDEN";
+                case 12: ntwkTypeStr = "EVDO_B";
+                case 13: ntwkTypeStr = "LTE";
+                case 14: ntwkTypeStr = "EHRPD";
+                case 15: ntwkTypeStr = "HSPAP";
+                case 16: ntwkTypeStr = "GSM";
+                case 17: ntwkTypeStr = "TD_SCDMA";
+                case 18: ntwkTypeStr = "IWLAN";
+            }
+
+            mLabelNetwork.setText(ntwkTypeStr);
+
+            mLabelCarrier.setText(telephonyManager.getNetworkOperatorName());
+            mLabelLocation.setText(telephonyManager.getNetworkCountryIso());
+
+            if (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)
+            {
+                String dataInfo = "IP Address:" + getLocalIpAddress() + "\n";
+                dataInfo = dataInfo + "DNS:" + getLocalDNS() + "\n";
+                dataInfo = dataInfo + "Network Type:" + ntwkTypeStr + "\n";
+                mLabelDataInfo.setText(dataInfo);
+            }
+            else
+            {
+                mLabelDataInfo.setText("");
+            }
+
             mHandler.postDelayed(this, 500);
         }
     }
@@ -176,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
                 for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();)
                 {
                     InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress())
+                    if (!inetAddress.isLoopbackAddress() && !inetAddress.isLinkLocalAddress())
                     {
                         return inetAddress.getHostAddress().toString();
                     }
@@ -240,9 +308,19 @@ public class MainActivity extends AppCompatActivity {
             for (int i=0; i<list.size(); i++)
             {
                 ScanResult result = list.get(i);
-                wifiList = wifiList + "SSID: " + result.SSID + "BSSID: " + result.BSSID + "  Signal: " + result.level + "\n";
+                wifiList = wifiList + "SSID: " + result.SSID + "\n   BSSID: " + result.BSSID + "\n   Signal: " + result.level + "\n";
+
+                if (i >= 2)
+                    break;
             }
+
+            txtWiFiList.setText(wifiList);
         }
+        else
+        {
+            txtWiFiList.setText("");
+        }
+
     }
 
     private class WifiIntentReceiver extends BroadcastReceiver
