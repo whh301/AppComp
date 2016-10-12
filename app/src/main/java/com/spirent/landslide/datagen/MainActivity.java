@@ -79,24 +79,43 @@ public class MainActivity extends AppCompatActivity {
         String ntwkTypeStr="ERR";
         switch (ntwkType) {
             case 0: ntwkTypeStr = "UNKNOWN";
+                break;
             case 1: ntwkTypeStr = "GPRS";
+                break;
             case 2: ntwkTypeStr = "EDGE";
+                break;
             case 3: ntwkTypeStr = "UMTS";
+                break;
             case 4: ntwkTypeStr = "CDMA";
+                break;
             case 5: ntwkTypeStr = "EVDO_0";
+                break;
             case 6: ntwkTypeStr = "EVDO_A";
+                break;
             case 7: ntwkTypeStr = "1xRTT";
+                break;
             case 8: ntwkTypeStr = "HSDPA";
+                break;
             case 9: ntwkTypeStr = "HSUPA";
+                break;
             case 10: ntwkTypeStr = "HSPA";
+                break;
             case 11: ntwkTypeStr = "IDEN";
+                break;
             case 12: ntwkTypeStr = "EVDO_B";
+                break;
             case 13: ntwkTypeStr = "LTE";
+                break;
             case 14: ntwkTypeStr = "EHRPD";
+                break;
             case 15: ntwkTypeStr = "HSPAP";
+                break;
             case 16: ntwkTypeStr = "GSM";
+                break;
             case 17: ntwkTypeStr = "TD_SCDMA";
+                break;
             case 18: ntwkTypeStr = "IWLAN";
+                break;
         }
 
         mLabelNetwork.setText(ntwkTypeStr);
@@ -193,24 +212,43 @@ public class MainActivity extends AppCompatActivity {
             String ntwkTypeStr="ERR";
             switch (ntwkType) {
                 case 0: ntwkTypeStr = "UNKNOWN";
+                    break;
                 case 1: ntwkTypeStr = "GPRS";
+                    break;
                 case 2: ntwkTypeStr = "EDGE";
+                    break;
                 case 3: ntwkTypeStr = "UMTS";
+                    break;
                 case 4: ntwkTypeStr = "CDMA";
+                    break;
                 case 5: ntwkTypeStr = "EVDO_0";
+                    break;
                 case 6: ntwkTypeStr = "EVDO_A";
+                    break;
                 case 7: ntwkTypeStr = "1xRTT";
+                    break;
                 case 8: ntwkTypeStr = "HSDPA";
+                    break;
                 case 9: ntwkTypeStr = "HSUPA";
+                    break;
                 case 10: ntwkTypeStr = "HSPA";
+                    break;
                 case 11: ntwkTypeStr = "IDEN";
+                    break;
                 case 12: ntwkTypeStr = "EVDO_B";
+                    break;
                 case 13: ntwkTypeStr = "LTE";
+                    break;
                 case 14: ntwkTypeStr = "EHRPD";
+                    break;
                 case 15: ntwkTypeStr = "HSPAP";
+                    break;
                 case 16: ntwkTypeStr = "GSM";
+                    break;
                 case 17: ntwkTypeStr = "TD_SCDMA";
+                    break;
                 case 18: ntwkTypeStr = "IWLAN";
+                    break;
             }
 
             mLabelNetwork.setText(ntwkTypeStr);
