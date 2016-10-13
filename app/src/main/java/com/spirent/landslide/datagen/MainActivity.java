@@ -16,6 +16,8 @@ import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,6 +33,10 @@ import java.util.List;
 import static android.net.wifi.WifiManager.WIFI_STATE_ENABLED;
 
 public class MainActivity extends AppCompatActivity {
+    final int RIGHT = 0;
+    final int LEFT = 1;
+    private GestureDetector gestureDetector;
+
     // Cell Information
     private TelephonyManager telephonyManager;
     private TextView mLabelCarrier;
@@ -68,12 +74,11 @@ public class MainActivity extends AppCompatActivity {
         {
             String dataInfo = "IP Address:" + getLocalIpAddress() + "\n";
             dataInfo = dataInfo + "DNS:" + getLocalDNS() + "\n";
-            dataInfo = dataInfo + "Network Type:" + ntwkTypeStr + "\n";
             mLabelDataInfo.setText(dataInfo);
         }
         else
         {
-            mLabelDataInfo.setText("");
+            mLabelDataInfo.setText("Data Not Connected!");
         }
 
         phoneListener = new MyPhoneStateListener();
@@ -90,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         mHandler = new Handler();
         mHandler.post(new TimerProcess());
+
+        gestureDetector = new GestureDetector(MainActivity.this,onGestureListener);
     }
 
     @Override
@@ -330,6 +337,41 @@ public class MainActivity extends AppCompatActivity {
                     mStatusWiFi.setText("UNKNOWN");
                     break;
             }
+        }
+    }
+
+    private GestureDetector.OnGestureListener onGestureListener =
+            new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                                       float velocityY) {
+                    float x = e2.getX() - e1.getX();
+                    float y = e2.getY() - e1.getY();
+
+                    if (x > 0) {
+                        doResult(RIGHT);
+                    } else if (x < 0) {
+                        doResult(LEFT);
+                    }
+                    return true;
+                }
+            };
+
+    public boolean onTouchEvent(MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
+    }
+
+    public void doResult(int action) {
+        switch (action) {
+            case RIGHT:
+                // System.out.println("go right");
+                break;
+            case LEFT:
+                // System.out.println("go left");
+                Intent next = new Intent(MainActivity.this, BenchMark.class);
+                MainActivity.this.startActivity(next);
+                MainActivity.this.finish();
+                break;
         }
     }
 }

@@ -9,15 +9,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.spirent.landslide.datagen.MainActivity">
-
-    <Button
-        android:text="Data BenchMark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/button" />
+    tools:context="com.spirent.landslide.datagen.MainActivity"
+    android:fadeScrollbars="false"
+    android:scrollbarStyle="insideOverlay"
+    android:scrollbars="vertical"
+    android:verticalScrollbarPosition="right">
 
     <TextView
         android:text="Dummy Carrier"
@@ -56,15 +52,6 @@
         android:layout_alignStart="@+id/textView14" />
 
     <TextView
-    android:text="Carrier Info:"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-        android:id="@+id/lblCarrier"
-        android:layout_below="@+id/txtCelular"
-        android:layout_toLeftOf="@+id/button"
-        android:layout_toStartOf="@+id/button" />
-
-    <TextView
         android:text="Location:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,9 +74,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lblGsmSignal"
-        android:layout_above="@+id/textDataInfo"
         android:layout_alignLeft="@+id/lblCdmaSignal"
-        android:layout_alignStart="@+id/lblCdmaSignal" />
+        android:layout_alignStart="@+id/lblCdmaSignal"
+        android:layout_below="@+id/lblCdmaSignal" />
 
     <TextView
         android:text="-1"
@@ -103,7 +90,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
         android:id="@+id/Label_WifiDetail"
         android:layout_below="@+id/txtWiFiInfo"
         android:layout_alignLeft="@+id/textView"
@@ -116,14 +102,14 @@
         android:id="@+id/textView6"
         android:layout_alignLeft="@+id/textView4"
         android:layout_alignStart="@+id/textView4"
-        android:layout_alignBottom="@+id/lblCdmaSignal" />
+        android:layout_below="@id/textView4" />
 
     <TextView
         android:text="-1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lblCdmaSignal"
-        android:layout_below="@+id/lblGsmSignal"
+        android:layout_below="@id/lblCellId"
         android:layout_alignLeft="@+id/txtNetworkInfo"
         android:layout_alignStart="@+id/txtNetworkInfo" />
 
@@ -140,7 +126,6 @@
         android:text="WiFi Information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
         android:id="@+id/txtWiFiInfo"
         android:layout_below="@+id/textDataInfo"
         android:layout_alignParentLeft="true"
@@ -169,8 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textDataInfo"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@id/textView6"
         android:layout_alignLeft="@+id/textView6"
         android:layout_alignStart="@+id/textView6" />
 
@@ -182,6 +166,15 @@
         android:layout_below="@+id/Label_WifiDetail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+    android:text="Carrier Info:"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:id="@+id/lblCarrier"
+        android:layout_below="@+id/txtCelular"
+        android:layout_alignRight="@+id/txtWiFiInfo"
+        android:layout_alignEnd="@+id/txtWiFiInfo" />
 
 
 </RelativeLayout>
