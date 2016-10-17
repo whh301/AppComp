@@ -1,22 +1,45 @@
 package com.spirent.landslide.datagen;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
 public class BenchMark extends AppCompatActivity {
     final int RIGHT = 0;
     final int LEFT = 1;
     private GestureDetector gestureDetector;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bench_mark);
         gestureDetector = new GestureDetector(BenchMark.this,onGestureListener);
+        mHandler = new Handler();
+        mHandler.post(new TimerProcess());
+    }
 
+    private class TimerProcess implements Runnable{
+        public void run() {
+            // get the progress of bench mark and show to GUI
+            mHandler.postDelayed(this, 500);
+        }
+    }
+
+    private class HttpBenchMark extends Thread {
+        public void run() {
+
+        }
+    }
+
+    private class UdpBenchMark extends Thread {
+        public void run() {
+
+        }
     }
 
     private GestureDetector.OnGestureListener onGestureListener =
