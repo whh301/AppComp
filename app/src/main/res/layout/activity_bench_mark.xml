@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app2=""
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_bench_mark"
     android:layout_width="match_parent"
@@ -15,14 +16,14 @@
         android:text="Target URL:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtReqUri" />
+        android:id="@+id/@+id/txtReqUri" />
 
     <TextView
         android:text="Packets Received:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/packetsRcvd"
-        android:layout_below="@+id/packetsSent"
+        android:id="@+id/@+id/packetsRcvd"
+        android:layout_below="@+id/@+id/packetsSent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -30,26 +31,26 @@
         android:text="Bytes Sent:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/packetsRcvd"
+        android:layout_below="@+id/@+id/packetsRcvd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/bytesSent" />
+        android:id="@+id/@+id/bytesSent" />
 
     <TextView
         android:text="Bytes Received:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/packetsRcvd"
+        android:layout_below="@+id/@+id/packetsRcvd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="15dp"
-        android:id="@+id/bytesRcvd" />
+        android:id="@+id/@+id/bytesRcvd" />
 
     <Button
         android:text="UDP BENCHMARK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnUdp"
+        android:id="@+id/@+id/btnUdp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -58,57 +59,57 @@
         android:text="UDP Bench Mark:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bytesRcvd"
+        android:layout_below="@+id/@+id/bytesRcvd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/udpBps" />
+        android:id="@+id/@+id/udpBps" />
 
     <TextView
         android:text="Target Ip:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnHttp"
+        android:layout_below="@+id/@+id/bthHttp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="21dp"
-        android:id="@+id/lblTarget" />
+        android:id="@+id/@+id/lblTarget" />
 
     <Button
         android:text="Passive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/btnHttp"
-        android:layout_toEndOf="@+id/btnHttp"
+        android:layout_toRightOf="@+id/@+id/bthHttp"
+        android:layout_toEndOf="@+id/@+id/bthHttp"
         android:layout_marginLeft="29dp"
         android:layout_marginStart="29dp"
-        android:id="@+id/btnPassive" />
+        android:id="@+id/@+id/btnPassive" />
 
     <TextView
         android:text="Total Bytes Received:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtReqUri"
+        android:layout_below="@+id/@+id/txtReqUri"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="24dp"
-        android:id="@+id/totalBytesRcved" />
+        android:id="@+id/@+id/totalBytesRcved" />
 
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/totalBytesRcved"
-        android:layout_toRightOf="@+id/btnUdp"
-        android:layout_toEndOf="@+id/btnUdp"
-        android:id="@+id/httpBytesRcved" />
+        android:layout_alignBottom="@+id/@+id/totalBytesRcved"
+        android:layout_toRightOf="@+id/@+id/btnUdp"
+        android:layout_toEndOf="@+id/@+id/btnUdp"
+        android:id="@+id/@+id/httpBytesRcved" />
 
     <TextView
         android:text="HTTP Bench Mark:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView17"
-        android:layout_below="@+id/totalBytesRcved"
+        android:layout_below="@+id/@+id/totalBytesRcved"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -116,17 +117,17 @@
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/httpBytesRcved"
-        android:layout_alignLeft="@+id/httpBytesRcved"
-        android:layout_alignStart="@+id/httpBytesRcved"
-        android:id="@+id/txtHttpBps" />
+        android:layout_below="@+id/@+id/httpBytesRcved"
+        android:layout_alignLeft="@+id/@+id/httpBytesRcved"
+        android:layout_alignStart="@+id/@+id/httpBytesRcved"
+        android:id="@+id/@+id/txtHttpBps" />
 
     <Button
         android:text="HTTP BENCHMARK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
-        android:id="@+id/btnHttp"
+        android:id="@+id/@+id/bthHttp"
         android:layout_marginTop="41dp"
         android:layout_below="@+id/textView17"
         android:layout_alignParentLeft="true"
@@ -136,8 +137,8 @@
         android:text="Packets Sent:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/packetsSent"
-        android:layout_below="@+id/lblTarget"
+        android:id="@+id/@+id/packetsSent"
+        android:layout_below="@+id/@+id/lblTarget"
         android:layout_marginTop="13dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -148,54 +149,54 @@
         android:inputType="textPersonName"
         android:text="192.168.1.20"
         android:ems="10"
-        android:layout_alignBaseline="@+id/lblTarget"
-        android:layout_alignBottom="@+id/lblTarget"
+        android:layout_alignBaseline="@+id/@+id/lblTarget"
+        android:layout_alignBottom="@+id/@+id/lblTarget"
         android:layout_centerHorizontal="true"
-        android:id="@+id/txtTarget" />
+        android:id="@+id/@+id/txtTarget" />
 
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/packetsRcvd"
-        android:layout_alignLeft="@+id/txtHttpBps"
-        android:layout_alignStart="@+id/txtHttpBps"
-        android:id="@+id/txtPksSent" />
+        android:layout_above="@+id/@+id/packetsRcvd"
+        android:layout_alignLeft="@+id/@+id/txtHttpBps"
+        android:layout_alignStart="@+id/@+id/txtHttpBps"
+        android:id="@+id/@+id/txtPksSent" />
 
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtPksSent"
-        android:layout_alignLeft="@+id/txtPksSent"
-        android:layout_alignStart="@+id/txtPksSent"
-        android:id="@+id/txtPksRcvd" />
+        android:layout_below="@+id/@+id/txtPksSent"
+        android:layout_alignLeft="@+id/@+id/txtPksSent"
+        android:layout_alignStart="@+id/@+id/txtPksSent"
+        android:id="@+id/@+id/txtPksRcvd" />
 
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtPksRcvd"
-        android:layout_alignLeft="@+id/txtPksRcvd"
-        android:layout_alignStart="@+id/txtPksRcvd"
-        android:id="@+id/txtUdpSent" />
+        android:layout_below="@+id/@+id/txtPksRcvd"
+        android:layout_alignLeft="@+id/@+id/txtPksRcvd"
+        android:layout_alignStart="@+id/@+id/txtPksRcvd"
+        android:id="@+id/@+id/txtUdpSent" />
 
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtUdpSent"
-        android:layout_alignLeft="@+id/txtUdpSent"
-        android:layout_alignStart="@+id/txtUdpSent"
-        android:id="@+id/udpRcvd" />
+        android:layout_below="@+id/@+id/txtUdpSent"
+        android:layout_alignLeft="@+id/@+id/txtUdpSent"
+        android:layout_alignStart="@+id/@+id/txtUdpSent"
+        android:id="@+id/@+id/udpRcvd" />
 
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/udpRcvd"
-        android:layout_alignLeft="@+id/udpRcvd"
-        android:layout_alignStart="@+id/udpRcvd"
-        android:id="@+id/udpMark" />
+        android:layout_below="@+id/@+id/udpRcvd"
+        android:layout_alignLeft="@+id/@+id/udpRcvd"
+        android:layout_alignStart="@+id/@+id/udpRcvd"
+        android:id="@+id/@+id/udpMark" />
 
 </RelativeLayout>
