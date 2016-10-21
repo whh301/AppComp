@@ -4,12 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -158,11 +155,6 @@ public class BenchMark extends AppCompatActivity {
     }
 
     private class HttpBenchMark extends Thread {
-        // 响应
-        private HttpResponse mHttpResponse = null;
-        // 实体
-        private HttpEntity mHttpEntity = null;
-
         //Start Time
         private long httpStartTime = 0;
         private int bytesReceived = 0;
@@ -194,42 +186,32 @@ public class BenchMark extends AppCompatActivity {
             httpStartTime = System.currentTimeMillis();
             bytesReceived = 0;
             currBps = 0;
-            // 生成一个请求对象
-            HttpGet httpGet = new HttpGet(targetUrl);
-            // 生成一个Http客户端对象
-            HttpClient httpClient = new DefaultHttpClient();
-            // 下面使用Http客户端发送请求，并获取响应内容
-            InputStream inputStream = null;
-            try
-            {
-                // 发送请求并获得响应对象
-                mHttpResponse = httpClient.execute(httpGet);
-                // 获得响应的消息实体
-                mHttpEntity = mHttpResponse.getEntity();
 
-                // 获取一个输入流
-                inputStream = mHttpEntity.getContent();
-                BufferedReader bufferedReader = new BufferedReader(
-                        new InputStreamReader(inputStream));
+            // TODO Auto-generated method stub
+            HttpURLConnection connection=null;
+
+            try {
+                URL url=new URL("http://www.baidu.com");
+                connection =(HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setConnectTimeout(8000);
+                connection.setReadTimeout(8000);
+                InputStream in=connection.getInputStream();
+                //下面对获取到的输入流进行读取
+                BufferedReader reader=new BufferedReader(new InputStreamReader(in));
+                StringBuilder response=new StringBuilder();
                 String line;
-                while (null != (line = bufferedReader.readLine()))
-                {
-                    httpDataReceived(line.length());
+                while((line=reader.readLine())!=null) {
+                    bytesReceived += line.length();
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
-            }
-            finally
-            {
-                try
-                {
-                    inputStream.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+                if(connection!=null){
+                    connection.disconnect();
                 }
             }
         }
