@@ -26,7 +26,7 @@ public class BenchMark extends AppCompatActivity {
     private GestureDetector gestureDetector;
     private Handler mHandler;
 
-    private HttpBenchMark httpThread;
+    private HttpBenchMark httpThread = null;
     private UdpSendThread udpSendThread;
     private UdpReceiveThread udpReceiveThread;
 
@@ -81,8 +81,14 @@ public class BenchMark extends AppCompatActivity {
     private View.OnClickListener httpClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (!httpThread.isAlive()) {
+            try {
+                if (httpThread != null) {
+                    httpThread.join();
+                }
+                httpThread = new HttpBenchMark();
                 httpThread.start();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
     };
@@ -151,8 +157,10 @@ public class BenchMark extends AppCompatActivity {
 
     private void showBenchMark()
     {
-        httpBytesRcvd.setText(httpThread.getBytesReceived());
-        httpBps.setText(httpThread.getHttpBps());
+        if (httpThread != null) {
+            httpBytesRcvd.setText(httpThread.getBytesReceived() + "");
+            httpBps.setText(httpThread.getHttpBps() + "");
+        }
     }
 
     private class HttpBenchMark extends Thread {
