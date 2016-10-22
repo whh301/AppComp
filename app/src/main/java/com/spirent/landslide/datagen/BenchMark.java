@@ -5,9 +5,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.SocketAddress;
+import java.net.SocketException;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -15,9 +21,11 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class BenchMark extends AppCompatActivity {
@@ -27,8 +35,8 @@ public class BenchMark extends AppCompatActivity {
     private Handler mHandler;
 
     private HttpBenchMark httpThread = null;
-    private UdpSendThread udpSendThread;
-    private UdpReceiveThread udpReceiveThread;
+    private UdpSendThread udpSendThread = null;
+    private UdpReceiveThread udpReceiveThread = null;
 
     // HTTP Bench Mark
     private TextView httpReqUri;
@@ -37,6 +45,7 @@ public class BenchMark extends AppCompatActivity {
     private Button btnHttpBench;
 
     // UDP numbers
+    private EditText udpTarget;
     private TextView udpPksSent;
     private TextView udpPksRcvd;
     private TextView udpBytesSent;
@@ -46,9 +55,12 @@ public class BenchMark extends AppCompatActivity {
     private Button btnUdpPassive;
     private UdpBenchData udpBenchData;
 
-    private static String targetUrl = "www.sina.com.cn";
+    private static String targetUrl = "http://www.sina.com.cn";
     private static int udpLocalPort = 2003;
     private static int udpRemotePort = 2003;
+    private boolean isPassive = false;
+
+    private boolean isStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +73,7 @@ public class BenchMark extends AppCompatActivity {
         httpBytesRcvd = (TextView) findViewById(R.id.httpBytesRcved);
         httpBps = (TextView) findViewById(R.id.txtHttpBps);
         httpReqUri = (TextView) findViewById(R.id.txtReqUri);
-        httpReqUri.setText("Target URL:" + targetUrl);
+        httpReqUri.setText("Target URL: " + targetUrl);
         btnHttpBench = (Button) findViewById(R.id.btnHttp);
         btnHttpBench.setOnClickListener(httpClickListener);
 
@@ -71,11 +83,15 @@ public class BenchMark extends AppCompatActivity {
         udpBytesSent = (TextView) findViewById(R.id.txtUdpSent);
         udpBytesRcvd = (TextView) findViewById(R.id.udpRcvd);
         udpBps = (TextView) findViewById(R.id.udpMark);
+        udpTarget = (EditText) findViewById(R.id.txtTarget);
+
+        btnUdpBench = (Button) findViewById(R.id.btnUdp);
+        btnUdpBench.setOnClickListener(udpBenchClickListener);
+
+        btnUdpPassive = (Button) findViewById(R.id.btnPassive);
+        btnUdpPassive.setOnClickListener(udpPassiveClickListener);
 
         udpBenchData = new UdpBenchData();
-        httpThread = new HttpBenchMark();
-        udpSendThread = new UdpSendThread();
-        udpReceiveThread = new UdpReceiveThread();
     }
 
     private View.OnClickListener httpClickListener = new View.OnClickListener() {
@@ -83,7 +99,7 @@ public class BenchMark extends AppCompatActivity {
         public void onClick(View v) {
             try {
                 if (httpThread != null) {
-                    httpThread.join();
+                    httpThread.interrupt();
                 }
                 httpThread = new HttpBenchMark();
                 httpThread.start();
@@ -92,6 +108,82 @@ public class BenchMark extends AppCompatActivity {
             }
         }
     };
+
+    private View.OnClickListener udpBenchClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                if (udpSendThread != null) {
+                    udpSendThread.interrupt();
+                }
+
+                if (udpReceiveThread != null) {
+                    udpReceiveThread.interrupt();
+                }
+
+                if (isStarted) {
+                    isStarted = false;
+                } else {
+                    isPassive = false;
+                    udpBenchData.markStartTime();
+                    udpSendThread = new UdpSendThread();
+                    udpSendThread.start();
+
+                    udpReceiveThread = new UdpReceiveThread();
+                    udpReceiveThread.start();
+                    isStarted = true;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    };
+
+    private View.OnClickListener udpPassiveClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                if (udpSendThread != null) {
+                    udpSendThread.interrupt();
+                }
+
+                if (udpReceiveThread != null) {
+                    udpReceiveThread.interrupt();
+                }
+
+                if (isStarted) {
+                    isStarted = false;
+                } else {
+                    isPassive = true;
+                    udpBenchData.markStartTime();
+                    udpReceiveThread = new UdpReceiveThread();
+                    udpReceiveThread.start();
+                    isStarted = true;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if (udpSendThread != null) {
+                udpSendThread.interrupt();
+            }
+
+            if (udpReceiveThread != null) {
+                udpReceiveThread.interrupt();
+            }
+
+            if (httpThread != null) {
+                httpThread.interrupt();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     private class UdpBenchData {
         private int packetsRcved = 0;
@@ -104,6 +196,11 @@ public class BenchMark extends AppCompatActivity {
         public void markStartTime()
         {
             startTime = System.currentTimeMillis();
+            packetsRcved = 0;
+            packetsSend = 0;
+            bytesReceived = 0;
+            bytesSent = 0;
+            currBps = 0;
         }
 
         public synchronized void handlePacketReceived(int length) {
@@ -126,6 +223,12 @@ public class BenchMark extends AppCompatActivity {
             }
         }
 
+        public long getBenchTime() {
+            long currTime = System.currentTimeMillis();
+            long benchTime = currTime - startTime;
+            return benchTime;
+        }
+
         public int getPacketsRcved() {
             return packetsRcved;
         }
@@ -142,8 +245,8 @@ public class BenchMark extends AppCompatActivity {
             return bytesSent;
         }
 
-        public double getCurrBps() {
-            return currBps;
+        public int getCurrBps() {
+            return (int) currBps;
         }
     }
 
@@ -158,9 +261,15 @@ public class BenchMark extends AppCompatActivity {
     private void showBenchMark()
     {
         if (httpThread != null) {
-            httpBytesRcvd.setText(httpThread.getBytesReceived() + "");
-            httpBps.setText(httpThread.getHttpBps() + "");
+            httpBytesRcvd.setText(httpThread.getBytesReceived() + " bytes");
+            httpBps.setText(httpThread.getHttpBps() + " bps");
         }
+
+        udpPksSent.setText(udpBenchData.getPacketsSend() + "");
+        udpPksRcvd.setText(udpBenchData.getPacketsRcved() + "");
+        udpBytesSent.setText(udpBenchData.getBytesSent() + " bytes");
+        udpBytesRcvd.setText(udpBenchData.getBytesReceived() + " bytes");
+        udpBps.setText(udpBenchData.getCurrBps() + " bps");
     }
 
     private class HttpBenchMark extends Thread {
@@ -198,7 +307,7 @@ public class BenchMark extends AppCompatActivity {
 
             HttpURLConnection connection=null;
             try {
-                URL url = new URL("http://www.baidu.com");
+                URL url = new URL(targetUrl);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setConnectTimeout(8000);
@@ -206,7 +315,7 @@ public class BenchMark extends AppCompatActivity {
                 InputStream in = connection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                 String line;
-                while (null != (line = reader.readLine())) {
+                while ((null != (line = reader.readLine())) && !this.isInterrupted()) {
                     httpDataReceived(line.length());
                 }
             } catch (Exception ex) {
@@ -220,15 +329,65 @@ public class BenchMark extends AppCompatActivity {
     }
 
     private class UdpSendThread extends Thread {
+        private byte[] msg = new byte[1024];
 
         public void run() {
+            InetAddress destAddr = null;
+            try {
+                String destIp = udpTarget.getText().toString();
+                destAddr = InetAddress.getByName(destIp);
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
 
+            DatagramSocket dSocket = null;
+            try {
+                dSocket = new DatagramSocket();
+                while (!this.isInterrupted() && udpBenchData.getBenchTime() < 60000) {
+                    DatagramPacket dPacket = new DatagramPacket(msg, msg.length, destAddr, udpRemotePort);
+                    try {
+                        dSocket.send(dPacket);
+                        udpBenchData.handlePacketSent(dPacket.getLength());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    Thread.currentThread().sleep(1);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            dSocket.close();
         }
     }
 
     private class UdpReceiveThread extends Thread {
-        public void run() {
+        private byte[] msg = new byte[1024];
 
+        public void run() {
+            DatagramSocket dSocket = null;
+            DatagramPacket dPacket = new DatagramPacket(msg, msg.length);
+            try {
+                dSocket = new DatagramSocket(udpLocalPort);
+                while (!this.isInterrupted() && udpBenchData.getBenchTime() < 60000) {
+                    try {
+                        dSocket.receive(dPacket);
+                        udpBenchData.handlePacketReceived(dPacket.getLength());
+
+                        if (isPassive) {
+                            dPacket.getAddress();
+                            dPacket.setAddress(dPacket.getAddress());
+                            dPacket.setPort(dPacket.getPort());
+                            dSocket.send(dPacket);
+
+                            udpBenchData.handlePacketSent(dPacket.getLength());
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (SocketException e) {
+                e.printStackTrace();
+            }
         }
     }
 
