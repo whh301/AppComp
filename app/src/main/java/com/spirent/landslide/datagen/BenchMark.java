@@ -415,7 +415,7 @@ public class BenchMark extends AppCompatActivity {
     public void doResult(int action) {
         switch (action) {
             case RIGHT:
-                // System.out.println("go right");
+                System.out.println("go right");
                 Intent next = new Intent(BenchMark.this, MainActivity.class);
                 BenchMark.this.startActivity(next);
                 BenchMark.this.finish();

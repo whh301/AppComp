@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,6 +17,24 @@
     android:verticalScrollbarPosition="right">
 
     <TextView
+        android:text="Celular Information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCelular"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Carrier Info:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblCarrier"
+        android:layout_below="@+id/txtCelular"
+        android:layout_alignRight="@+id/txtWiFiInfo"
+        android:layout_alignEnd="@+id/txtWiFiInfo" />
+
+    <TextView
         android:text="Dummy Carrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,33 +42,6 @@
         android:layout_alignBaseline="@+id/lblCarrier"
         android:layout_alignBottom="@+id/lblCarrier"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="China"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView14"
-        android:layout_alignLeft="@+id/txtCarrierInfo"
-        android:layout_alignStart="@+id/txtCarrierInfo"
-        android:id="@+id/lblLocalInfo" />
-
-    <TextView
-        android:text="CDMA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignLeft="@+id/lblLocalInfo"
-        android:layout_alignStart="@+id/lblLocalInfo"
-        android:id="@+id/txtNetworkInfo" />
-
-    <TextView
-        android:text="Network Info:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_below="@+id/textView14"
-        android:layout_alignLeft="@+id/textView14"
-        android:layout_alignStart="@+id/textView14" />
 
     <TextView
         android:text="Location:"
@@ -62,22 +53,40 @@
         android:layout_alignStart="@+id/lblCarrier" />
 
     <TextView
-        android:text="ON"
+        android:text="China"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtWiFiInfo"
-        android:layout_alignLeft="@+id/lblGsmSignal"
-        android:layout_alignStart="@+id/lblGsmSignal"
-        android:id="@+id/lblWiFiState" />
+        android:layout_alignTop="@+id/textView14"
+        android:layout_alignLeft="@+id/txtCarrierInfo"
+        android:layout_alignStart="@+id/txtCarrierInfo"
+        android:id="@+id/lblLocalInfo" />
 
     <TextView
-        android:text="-1"
+        android:text="Network Info:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lblGsmSignal"
-        android:layout_alignLeft="@+id/lblCdmaSignal"
-        android:layout_alignStart="@+id/lblCdmaSignal"
-        android:layout_below="@+id/lblCdmaSignal" />
+        android:id="@+id/textView"
+        android:layout_below="@+id/textView14"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
+
+    <TextView
+        android:text="CDMA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignLeft="@+id/lblLocalInfo"
+        android:layout_alignStart="@+id/lblLocalInfo"
+        android:id="@+id/txtNetworkInfo" />
+
+    <TextView
+        android:text="Cell ID:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
 
     <TextView
         android:text="-1"
@@ -89,12 +98,22 @@
         android:id="@+id/lblCellId" />
 
     <TextView
+        android:text="CDMA Signal:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Label_WifiDetail"
-        android:layout_below="@+id/txtWiFiInfo"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView10"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <TextView
+        android:text="-1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblGsmSignal"
+        android:layout_alignLeft="@+id/lblCdmaSignal"
+        android:layout_alignStart="@+id/lblCdmaSignal"
+        android:layout_below="@+id/lblCdmaSignal" />
 
     <TextView
         android:text="GSM Signal:"
@@ -106,15 +125,6 @@
         android:layout_below="@id/textView4" />
 
     <TextView
-        android:text="Celular Information"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="-1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -122,42 +132,6 @@
         android:layout_below="@id/lblCellId"
         android:layout_alignLeft="@+id/txtNetworkInfo"
         android:layout_alignStart="@+id/txtNetworkInfo" />
-
-    <TextView
-        android:text="Celular Information"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtCelular"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="WiFi Information"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtWiFiInfo"
-        android:layout_below="@+id/textDataInfo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Cell Id:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView14"
-        android:layout_alignStart="@+id/textView14" />
-
-    <TextView
-        android:text="CDMA Signal:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/textView10"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
 
     <TextView
         android:text="TextView"
@@ -169,22 +143,56 @@
         android:layout_alignStart="@+id/textView6" />
 
     <TextView
-        android:text="WiFi List"
+        android:text="WiFi Information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtWiFiList"
-        android:layout_below="@+id/Label_WifiDetail"
+        android:id="@+id/txtWiFiInfo"
+        android:layout_below="@+id/textDataInfo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
-    android:text="Carrier Info:"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-        android:id="@+id/lblCarrier"
-        android:layout_below="@+id/txtCelular"
-        android:layout_alignRight="@+id/txtWiFiInfo"
-        android:layout_alignEnd="@+id/txtWiFiInfo" />
+        android:text="ON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtWiFiInfo"
+        android:layout_alignLeft="@+id/lblGsmSignal"
+        android:layout_alignStart="@+id/lblGsmSignal"
+        android:id="@+id/lblWiFiState" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Label_WifiDetail"
+        android:layout_below="@+id/txtWiFiInfo"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textDataInfo1"
+        android:layout_below="@id/Label_WifiDetail"
+        android:layout_alignLeft="@+id/Label_WifiDetail"
+        android:layout_alignStart="@+id/Label_WifiDetail" />
+
+    <TextView
+        android:text="WLAN List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtWlist"
+        android:layout_below="@+id/textDataInfo1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="WLAN List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtWiFiList"
+        android:layout_below="@+id/txtWlist"
+        android:layout_alignLeft="@+id/Label_WifiDetail"
+        android:layout_alignStart="@+id/Label_WifiDetail" />
 
 </RelativeLayout>

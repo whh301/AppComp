@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg"
     tools:context="com.spirent.landslide.datagen.BenchMark">
 
     <TextView
@@ -45,15 +46,6 @@
         android:layout_marginTop="15dp"
         android:id="@+id/bytesRcvd" />
 
-    <Button
-        android:text="UDP BENCHMARK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnUdp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:text="UDP Bench Mark:"
         android:layout_width="wrap_content"
@@ -72,17 +64,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="21dp"
         android:id="@+id/lblTarget" />
-
-    <Button
-        android:text="Passive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/btnHttp"
-        android:layout_toEndOf="@+id/btnHttp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp"
-        android:id="@+id/btnPassive" />
 
     <TextView
         android:text="Total Bytes Received:"
@@ -121,17 +102,6 @@
         android:layout_alignStart="@+id/httpBytesRcved"
         android:id="@+id/txtHttpBps" />
 
-    <Button
-        android:text="HTTP BENCHMARK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignWithParentIfMissing="false"
-        android:id="@+id/btnHttp"
-        android:layout_marginTop="41dp"
-        android:layout_below="@+id/textView17"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:text="Packets Sent:"
         android:layout_width="wrap_content"
@@ -144,6 +114,7 @@
 
     <EditText
         android:layout_width="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text="192.168.1.20"
@@ -197,5 +168,38 @@
         android:layout_alignLeft="@+id/udpRcvd"
         android:layout_alignStart="@+id/udpRcvd"
         android:id="@+id/udpMark" />
+
+    <Button
+        android:text="UDP BENCHMARK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnUdp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="21dp" />
+
+    <Button
+        android:text="Passive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPassive"
+        android:layout_alignBaseline="@+id/btnUdp"
+        android:layout_alignBottom="@+id/btnUdp"
+        android:layout_alignRight="@+id/txtTarget"
+        android:layout_alignEnd="@+id/txtTarget"
+        android:layout_marginRight="19dp"
+        android:layout_marginEnd="19dp" />
+
+    <Button
+        android:text="HTTP BENCHMARK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:id="@+id/btnHttp"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/textView17"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

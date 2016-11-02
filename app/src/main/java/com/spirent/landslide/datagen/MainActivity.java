@@ -72,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)
         {
-            String dataInfo = "IP Address:" + getLocalIpAddress() + "\n";
-            dataInfo = dataInfo + "DNS:" + getLocalDNS() + "\n";
+            String dataInfo = "IP Address:\t\t" + getLocalIpAddress() + "\n";
+            dataInfo = dataInfo + "DNS:\t\t" + getLocalDNS() + "\n";
             mLabelDataInfo.setText(dataInfo);
         }
         else
         {
-            mLabelDataInfo.setText("Data Not Connected!");
+            mLabelDataInfo.setText("");
         }
 
         phoneListener = new MyPhoneStateListener();
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             int netWorkType = telephonyManager.getPhoneType();
-            String cellId = "";
+            String cellId = "2421914";
             try {
                 if (netWorkType == TelephonyManager.PHONE_TYPE_CDMA) {
                     CdmaCellLocation location = (CdmaCellLocation) telephonyManager.getCellLocation();
@@ -206,9 +206,9 @@ public class MainActivity extends AppCompatActivity {
 
             if (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)
             {
-                String dataInfo = "IP Address:" + getLocalIpAddress() + "\n";
-                dataInfo = dataInfo + "DNS:" + getLocalDNS() + "\n";
-                dataInfo = dataInfo + "Network Type:" + ntwkTypeStr + "\n";
+                String dataInfo = "IP Address:" + "            " + getLocalIpAddress() + "\n";
+                dataInfo = dataInfo + "DNS:" + "                        " + getLocalDNS() + "\n";
+                dataInfo = dataInfo + "Network Type:" + "       " + ntwkTypeStr + "\n";
                 mLabelDataInfo.setText(dataInfo);
             }
             else
@@ -281,10 +281,10 @@ public class MainActivity extends AppCompatActivity {
         String strIp = "" + (Ip & 0xFF) + "." + ((Ip >> 8) & 0xFF) + "." + ((Ip >> 16) & 0xFF) + "." + ((Ip >> 24) & 0xFF);
         int dnsIp = dhcpInfo.dns1;
         String strDnsIp = "" + (dnsIp & 0xFF) + "." + ((dnsIp >> 8) & 0xFF) + "." + ((dnsIp >> 16) & 0xFF) + "." + ((dnsIp >> 24) & 0xFF);
-        mLabelWifi.setText("BSSID : " + info.getBSSID() + "\nSSID : " + info.getSSID() +
-                "\nIpAddress : " + strIp +  "\nDNSAddress : " + strDnsIp + "\nMacAddress : " + info.getMacAddress() +
-                "\nNetworkId : " + info.getNetworkId() + "\nLinkSpeed : " + info.getLinkSpeed() + "Mbps" +
-                "\nRssi : " + info.getRssi());
+        mLabelWifi.setText("BSSID:                    " + info.getBSSID() + "\nSSID:                       " + info.getSSID() +
+                "\nIP Address:           " + strIp +  "\nDNS Address:       " + strDnsIp + "\nMAC Address:      " + info.getMacAddress() +
+                "\nNetwork ID:           " + info.getNetworkId() + "\nLink Speed:           " + info.getLinkSpeed() + "Mbps" +
+                "\nRssi:                        " + info.getRssi());
         // All WiFi list
         TextView txtWiFiList = (TextView) findViewById(R.id.txtWiFiList);
         List<ScanResult> list = ((WifiManager)getSystemService(WIFI_SERVICE)).getScanResults();
@@ -367,10 +367,10 @@ public class MainActivity extends AppCompatActivity {
                 // System.out.println("go right");
                 break;
             case LEFT:
-                // System.out.println("go left");
+                System.out.println("go left");
                 Intent next = new Intent(MainActivity.this, BenchMark.class);
                 MainActivity.this.startActivity(next);
-                MainActivity.this.finish();
+//                MainActivity.this.finish();
                 break;
         }
     }
