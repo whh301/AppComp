@@ -329,6 +329,7 @@ public class BenchMark extends AppCompatActivity {
     }
 
     private class UdpSendThread extends Thread {
+        public DatagramSocket dSocket = null;
         private byte[] msg = new byte[1024];
 
         public void run() {
@@ -340,9 +341,9 @@ public class BenchMark extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            DatagramSocket dSocket = null;
             try {
-                dSocket = new DatagramSocket();
+                dSocket = new DatagramSocket(udpLocalPort);
+
                 while (!this.isInterrupted() && udpBenchData.getBenchTime() < 60000) {
                     DatagramPacket dPacket = new DatagramPacket(msg, msg.length, destAddr, udpRemotePort);
                     try {
@@ -367,7 +368,20 @@ public class BenchMark extends AppCompatActivity {
             DatagramSocket dSocket = null;
             DatagramPacket dPacket = new DatagramPacket(msg, msg.length);
             try {
-                dSocket = new DatagramSocket(udpLocalPort);
+                if (isPassive) {
+                    dSocket = new DatagramSocket(udpLocalPort);
+                } else {
+                    while (udpSendThread.dSocket == null) {
+                        try {
+                            sleep(1);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+
+                    dSocket = udpSendThread.dSocket;
+                }
+
                 while (!this.isInterrupted() && udpBenchData.getBenchTime() < 60000) {
                     try {
                         dSocket.receive(dPacket);
