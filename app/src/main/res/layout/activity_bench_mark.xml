@@ -16,7 +16,83 @@
         android:text="Target URL:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:id="@+id/txtReqUri" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="10.61.64.101"
+        android:ems="8"
+        android:layout_alignBaseline="@+id/txtReqUri"
+        android:layout_alignBottom="@+id/txtReqUri"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/httpTarget" />
+
+    <TextView
+        android:text="Total Bytes Received:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtReqUri"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp"
+        android:id="@+id/totalBytesRcved" />
+
+    <TextView
+        android:text="HTTP Bench Mark:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView17"
+        android:layout_below="@+id/totalBytesRcved"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="HTTP BENCHMARK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:id="@+id/btnHttp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView17"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@android:style/Widget.Button" />
+
+    <TextView
+        android:text="Target Ip:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnHttp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="100dp"
+        android:id="@+id/lblTarget" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="10.61.64.101"
+        android:ems="8"
+        android:layout_alignBaseline="@+id/lblTarget"
+        android:layout_alignBottom="@+id/lblTarget"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txtTarget" />
+
+    <TextView
+        android:text="Packets Sent:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/packetsSent"
+        android:layout_below="@+id/lblTarget"
+        android:layout_marginTop="13dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Packets Received:"
@@ -56,26 +132,6 @@
         android:id="@+id/udpBps" />
 
     <TextView
-        android:text="Target Ip:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnHttp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp"
-        android:id="@+id/lblTarget" />
-
-    <TextView
-        android:text="Total Bytes Received:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtReqUri"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp"
-        android:id="@+id/totalBytesRcved" />
-
-    <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,15 +141,6 @@
         android:id="@+id/httpBytesRcved" />
 
     <TextView
-        android:text="HTTP Bench Mark:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView17"
-        android:layout_below="@+id/totalBytesRcved"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -101,28 +148,6 @@
         android:layout_alignLeft="@+id/httpBytesRcved"
         android:layout_alignStart="@+id/httpBytesRcved"
         android:id="@+id/txtHttpBps" />
-
-    <TextView
-        android:text="Packets Sent:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/packetsSent"
-        android:layout_below="@+id/lblTarget"
-        android:layout_marginTop="13dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="192.168.1.20"
-        android:ems="10"
-        android:layout_alignBaseline="@+id/lblTarget"
-        android:layout_alignBottom="@+id/lblTarget"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/txtTarget" />
 
     <TextView
         android:text="0"
@@ -174,32 +199,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnUdp"
+        android:layout_marginBottom="18dp"
+        style="@android:style/Widget.Button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="21dp" />
+        android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Passive"
+        android:text="            Passive            "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnPassive"
+        style="@android:style/Widget.Button"
         android:layout_alignBaseline="@+id/btnUdp"
         android:layout_alignBottom="@+id/btnUdp"
-        android:layout_alignRight="@+id/txtTarget"
-        android:layout_alignEnd="@+id/txtTarget"
-        android:layout_marginRight="19dp"
-        android:layout_marginEnd="19dp" />
-
-    <Button
-        android:text="HTTP BENCHMARK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignWithParentIfMissing="false"
-        android:id="@+id/btnHttp"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/textView17"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toRightOf="@+id/btnUdp"
+        android:layout_toEndOf="@+id/btnUdp" />
 
 </RelativeLayout>

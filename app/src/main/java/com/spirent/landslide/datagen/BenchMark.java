@@ -40,6 +40,7 @@ public class BenchMark extends AppCompatActivity {
 
     // HTTP Bench Mark
     private TextView httpReqUri;
+    private EditText httpTarget;
     private TextView httpBytesRcvd;
     private TextView httpBps;
     private Button btnHttpBench;
@@ -55,7 +56,7 @@ public class BenchMark extends AppCompatActivity {
     private Button btnUdpPassive;
     private UdpBenchData udpBenchData;
 
-    private static String targetUrl = "http://www.sina.com.cn";
+//    private static String targetUrl = "http://www.sina.com";
     private static int udpLocalPort = 2003;
     private static int udpRemotePort = 2003;
     private boolean isPassive = false;
@@ -73,7 +74,8 @@ public class BenchMark extends AppCompatActivity {
         httpBytesRcvd = (TextView) findViewById(R.id.httpBytesRcved);
         httpBps = (TextView) findViewById(R.id.txtHttpBps);
         httpReqUri = (TextView) findViewById(R.id.txtReqUri);
-        httpReqUri.setText("Target URL: " + targetUrl);
+//        httpReqUri.setText("Target URL: " + targetUrl);
+        httpTarget = (EditText) findViewById(R.id.httpTarget);
         btnHttpBench = (Button) findViewById(R.id.btnHttp);
         btnHttpBench.setOnClickListener(httpClickListener);
 
@@ -307,6 +309,7 @@ public class BenchMark extends AppCompatActivity {
 
             HttpURLConnection connection=null;
             try {
+                String targetUrl =  "http://" + httpTarget.getText().toString();
                 URL url = new URL(targetUrl);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
