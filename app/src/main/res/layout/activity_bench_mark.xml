@@ -206,7 +206,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="            Passive            "
+        android:text="         Passive         "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnPassive"

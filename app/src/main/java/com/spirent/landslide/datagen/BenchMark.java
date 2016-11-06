@@ -125,6 +125,8 @@ public class BenchMark extends AppCompatActivity {
 
                 if (isStarted) {
                     isStarted = false;
+                    btnUdpBench.setText("UDP BENCHMARK");
+                    btnUdpPassive.setText("         Passive         ");
                 } else {
                     isPassive = false;
                     udpBenchData.markStartTime();
@@ -134,6 +136,8 @@ public class BenchMark extends AppCompatActivity {
                     udpReceiveThread = new UdpReceiveThread();
                     udpReceiveThread.start();
                     isStarted = true;
+                    btnUdpBench.setText("             Stop             ");
+                    btnUdpPassive.setText("             Stop             ");
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -155,12 +159,16 @@ public class BenchMark extends AppCompatActivity {
 
                 if (isStarted) {
                     isStarted = false;
+                    btnUdpBench.setText("UDP BENCHMARK");
+                    btnUdpPassive.setText("         Passive         ");
                 } else {
                     isPassive = true;
                     udpBenchData.markStartTime();
                     udpReceiveThread = new UdpReceiveThread();
                     udpReceiveThread.start();
                     isStarted = true;
+                    btnUdpBench.setText("             Stop             ");
+                    btnUdpPassive.setText("             Stop             ");
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -309,6 +317,7 @@ public class BenchMark extends AppCompatActivity {
 
             HttpURLConnection connection=null;
             try {
+//                btnHttpBench.setText("          Testing          ");
                 String targetUrl =  "http://" + httpTarget.getText().toString();
                 URL url = new URL(targetUrl);
                 connection = (HttpURLConnection) url.openConnection();
@@ -326,6 +335,7 @@ public class BenchMark extends AppCompatActivity {
             } finally {
                 if (connection != null) {
                     connection.disconnect();
+//                    btnHttpBench.setText("HTTP BENCHMARK");
                 }
             }
         }
