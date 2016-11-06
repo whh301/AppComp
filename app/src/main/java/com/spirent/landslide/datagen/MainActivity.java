@@ -132,14 +132,14 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             WifiManager wifiInfo = (WifiManager) getSystemService(WIFI_SERVICE);
             TextView txtWiFiList = (TextView) findViewById(R.id.txtWiFiList);
-            if (wifiInfo.getWifiState() == WIFI_STATE_ENABLED) {
+//            if (wifiInfo.getWifiState() == WIFI_STATE_ENABLED) {
                 showWIFIDetail();
-            }
-            else
-            {
-                txtWiFiList.setText("");
-                mLabelWifi.setText("");
-            }
+//            }
+//            else
+//            {
+//                txtWiFiList.setText("");
+//                mLabelWifi.setText("BSSID:\nSSID:\nIP Address:\nDNS Address:\nMAC Address:\nNetwork ID:\nLink Speed:\nRssi:");
+//            }
 
             int netWorkType = telephonyManager.getPhoneType();
             String cellId = "2421914";
@@ -291,13 +291,16 @@ public class MainActivity extends AppCompatActivity {
         if (list != null)
         {
             String wifiList = "";
-            for (int i=0; i<list.size(); i++)
-            {
-                ScanResult result = list.get(i);
-                wifiList = wifiList + "SSID: " + result.SSID + "\n   BSSID: " + result.BSSID + "\n   Signal: " + result.level + "\n";
+            if (list.size() == 0) {
+                wifiList = "SSID: MyGreen\n   BSSID: xx:xx:xx:xx:xx:xx\n   Signal: -66\n";
+            } else {
+                for (int i = 0; i < list.size(); i++) {
+                    ScanResult result = list.get(i);
+                    wifiList = wifiList + "SSID: " + result.SSID + "\n   BSSID: " + result.BSSID + "\n   Signal: " + result.level + "\n";
 
-                if (i >= 2)
-                    break;
+                    if (i >= 2)
+                        break;
+                }
             }
 
             txtWiFiList.setText(wifiList);
@@ -328,7 +331,7 @@ public class MainActivity extends AppCompatActivity {
                     mStatusWiFi.setText("OFF");
                     break;
                 case WifiManager.WIFI_STATE_ENABLING:
-                    mStatusWiFi.setText("OFF");
+                    mStatusWiFi.setText("ENABLING");
                     break;
                 case WIFI_STATE_ENABLED:
                     mStatusWiFi.setText("ON");
